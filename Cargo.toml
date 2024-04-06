@@ -1,0 +1,43 @@
+[package]
+name = "jrand"
+version = "0.1.0"
+edition = "2021"
+authors = ["Hera Chamorro <hera@hera.wtf>"]
+license = "MIT OR Apache-2.0"
+description = "Rust implementation of Java's `java.util.Random` class."
+homepage = "https://github.com/herabit/jrand"
+repository = "https://github.com/herabit/jrand"
+categories = [
+  "random",
+  "rng",
+  "rand",
+  "number",
+  "number-generator",
+  "java",
+  "numbers",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bytemuck = { version = "1.15.0", default-features = false }
+serde = { version = "1", default-features = false, features = [
+  "derive",
+], optional = true }
+libm = { version = "0.2.8", optional = true }
+cpufeatures = "0.2.12"
+cfg-if = "1"
+
+[dev-dependencies]
+jni = { version = "0.21.1", features = [
+  "java-locator",
+  "invocation",
+  "libloading",
+] }
+rand = "0.8.5"
+
+[features]
+default = ["std"]
+std = []
+libm = ["dep:libm"]
+serde = ["dep:serde"]
